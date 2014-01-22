@@ -1,11 +1,17 @@
 var config = require(__dirname + '/config.js');
-var capture = require('webcam-capture');
+//var capture = require('webcam-capture');
+var RaspiCam = require("raspicam");
 var moment = require('moment');
 var every = require('schedule').every;
 var times;
 
 
-
+var camera = new RaspiCam({
+        mode: "photo",
+        output: "webapp/photo/image.jpg",
+        encoding: "jpg",
+        timeout: 0 // take the picture immediately
+});
 exports.createRoutes = function(app) {
     app.get('/api/start', function(req, res) {
         console.log('doScean');
@@ -41,6 +47,18 @@ exports.createRoutes = function(app) {
 function doEveryScean() {
     times = every('10s').do(function() {
         console.log('start');
-        var spawn = capture({ out: __dirname + '/webapp/picture/me.jpg' });
+        camera.on("started", function( err, timestamp ){
+                console.log("photo started at " + timestamp );
+        });
+
+        camera.on("read", function( err, timestamp, filename ){
+                console.log("photo image captured with filename: " + filename );
+        });
+
+        camera.on("exit", function( timestamp ){
+                console.log("photo child process has exited at " + timestamp );
+        });
+
+        camera.start();
     });
 }
