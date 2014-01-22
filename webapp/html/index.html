@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="EasyCamera">
+	<head>
+		<title>Easy Camera</title>
+        <meta charset="utf-8">
+		<script src="script/angular.min.js"></script>
+		<script src="script/angular-resource.min.js"></script>
+		<script src="script/index.js"></script>
+        <link rel="stylesheet" href="style.css" />
+	</head>
+	<body ng-view>
+            <script type="text/ng-template" id="J-logger">
+            </script>
+            <script type="text/ng-template" id="J-photo">
+            </script>
+            <script type="text/ng-template" id="J-action" ng-controller="indexCtrl">
+                <div class="camera">
+                    <div class="camera-head">
+                        <h1 class="logo">Camera</h1>
+                    </div>
+                    <div class="camera-body"  ng-model="picture">
+                        <img src="http://localhost:3000/picture/{{ picture }}" width="300" height="200"/>
+                    </div>
+                    <div class="camera-foot">
+                        <a href="#" class="camera-foot-action" ng-click="cameraAction()">开启</a>
+                        <a href="#" class="camera-foot-cancle" ng-click="cameraCancle()">取消</a>
+                    </div>
+                </div>
+            </script>
+	</body>
+</html>
