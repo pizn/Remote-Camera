@@ -8,7 +8,7 @@
   "dependencies": {
     "express": "3.x",
     "moment": "2.5.0",
-    "node-raspicam": "0.2.13",
+    "raspicam": "0.2.13",
     "schedule": "0.1.0"
   }
 }
