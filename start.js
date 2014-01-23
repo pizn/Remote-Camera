@@ -7,8 +7,8 @@ var times;
 var camelot = require('camelot');
 
 //create a new connection to fswebcam and set some options
-var camera = new camelot({
-  'device': 'dev/video0',
+var camelot = new camelot({
+  'device': '/dev/video0',
   'jpeg': '95',
   'resolution': '320x240'
 });
@@ -22,7 +22,7 @@ camelot.on('error', function (err) {
 });
 
 //initiate camera recording - note: frequency = frames per second
-camera.grab({
+camelot.grab({
   'title': 'Camera1',
   'font': 'Arial:24',
   'frequency': 1
