@@ -4,6 +4,29 @@ var RaspiCam = require("raspicam");
 var moment = require('moment');
 var every = require('schedule').every;
 var times;
+var camelot = require('camelot');
+
+//create a new connection to fswebcam and set some options
+var camera = new camelot({
+  'device': 'dev/video0',
+  'jpeg': '95',
+  'resolution': '320x240'
+});
+
+camelot.on('frame', function (image) {
+  console.log('frame received!');
+});
+
+camelot.on('error', function (err) {
+  console.log(err);
+});
+
+//initiate camera recording - note: frequency = frames per second
+camera.grab({
+  'title': 'Camera1',
+  'font': 'Arial:24',
+  'frequency': 1
+});
 
 
 var camera = new RaspiCam({
@@ -16,7 +39,7 @@ exports.createRoutes = function(app) {
     app.get('/api/start', function(req, res) {
         console.log('doScean');
         //开启定时抓拍
-        doEveryScean();
+        //doEveryScean();
         var data = {
             'msg': 'done',
             'stat': 'ok'
