@@ -6,7 +6,9 @@ var every = require('schedule').every;
 var times;
 var camelot = require('camelot');
 var spawn = require('child_process').spawn;
-var fswebcam = spawn('fswebcam', '-d /dev/video0 -r 320*240 --bottom-banner --title "Hello world!" --no-timestamp /home/pi/tmp/111.jpg');
+var parame = ["-d", "/dev/video0", "-r", "320*240", "--title", "hello", "--no-timestamp", "/home/pi/tmp/111.jpg"];
+
+var fswebcam = spawn('fswebcam', parame);
 
  fswebcam.on('exit', function (code) {
      console.log('123');
