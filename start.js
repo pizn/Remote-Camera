@@ -5,8 +5,16 @@ var moment = require('moment');
 var every = require('schedule').every;
 var times;
 var camelot = require('camelot');
+var spawn = require('child_process').spawn;
+var fswebcam = spawn('fswebcam', '-d /dev/video0 -r 320*240 --bottom-banner --title "Hello world!" --no-timestamp /home/pi/tmp/111.jpg');
+
+ fswebcam.on('exit', function (code) {
+     console.log('123');
+ });
+
 
 //create a new connection to fswebcam and set some options
+/**
 var camelot = new camelot({
   'device': '/dev/video0',
   'jpeg': '95',
@@ -27,7 +35,7 @@ camelot.grab({
   'font': 'Arial:24',
   'frequency': 1
 });
-
+**/
 
 var camera = new RaspiCam({
         mode: "photo",
