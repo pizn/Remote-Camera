@@ -27,3 +27,11 @@ body {
 .action {
     margin: 40px 0 30px;
 }
+.cp {
+    text-align: center;
+    color: #36495f;
+    font-size: 16px;
+}
+.cp a {
+    color: #768282;
+}
