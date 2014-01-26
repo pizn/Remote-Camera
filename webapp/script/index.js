@@ -16,7 +16,7 @@ function cameraCtrl($scope, $resource) {
             console.log(data);
             //塞入图片
             if(data.stat === 'ok') {
-                $scope.picture = data.id + 'jpg';
+                $scope.picture = data.id + '.jpg';
             } else {
                 $scope.errorMsg = 'fail';
                 $scope.picture = 'thumb.jpg';

@@ -26,12 +26,11 @@ exports.createRoutes = function(app) {
 
         console.log('---> 准备数据');
         fswebcam.on('exit', function(code) {
-            console.log('123');
             result = {
                 'stat': 'ok',
                 'id': title
             }
-            console.log('---> 发送数据');
+            console.log('---> 成功，发送数据');
             res.send(200, result);
         });
         fswebcam.on('error', function() {
@@ -39,7 +38,7 @@ exports.createRoutes = function(app) {
             result = {
                 'stat': 'fail'
             }
-            console.log('---> 发送数据');
+            console.log('---> 失败，发送数据');
             res.send(200, result);
         });
         console.log('---> Done     ---------|');
