@@ -3,7 +3,17 @@
 	<head>
 		<title>Easy Camera</title>
         <meta charset="utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Easy Camera" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link rel="apple-touch-startup-image" href="/photo/start.jpg" />
+        <link rel="apple-touch-startup-image" href="/photo/start.jpg" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
+        <link rel="apple-touch-icon-precomposed" href="/photo/54.jpg">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/photo/72.jpg">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/photo/114.jpg">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/photo/144.jpg">
+
 		<script src="script/angular.min.js"></script>
 		<script src="script/angular-resource.min.js"></script>
 		<script src="script/index.js"></script>
@@ -27,8 +37,8 @@
                 <div class="col-xs-12">
                     <div class="photo palette palette-wet-asphalt">
                         {{errorMsg}}
-                        <div class="photo-cnt {{class}}">
-                            <img src="/photo/{{picture}}" width="{{width}}" height="{{height}}" class="img-rounded img-responsive"/>
+                        <div class="photo-cnt">
+                            <img src="/photo/{{picture}}" width="320" height="240" class="img-rounded img-responsive"/>
                         </div>
                     </div>
                 </div>
