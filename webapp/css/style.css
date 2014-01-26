@@ -1,0 +1,21 @@
+body {
+    padding: 30px 0;
+}
+
+.container {
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 500px;
+}
+.photo {
+    height: auto;
+    background: #36495f url(../photo/thumb.jpg) no-repeat center left;
+}
+.photo .photo-cnt {
+    margin: 0 auto;
+    text-align: center;
+}
+.action {
+    margin: 30px 0;
+}

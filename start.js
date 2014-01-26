@@ -1,97 +1,44 @@
 var config = require(__dirname + '/config.js');
-//var capture = require('webcam-capture');
-var RaspiCam = require("raspicam");
 var moment = require('moment');
-var every = require('schedule').every;
-var times;
-var camelot = require('camelot');
 var spawn = require('child_process').spawn;
-var parame = ["-d", "/dev/video0", "-r", "320*240", "--title", "hello", "--no-timestamp", "/home/pi/tmp/111.jpg"];
 
-var fswebcam = spawn('fswebcam', parame);
-
- fswebcam.on('exit', function (code) {
-     console.log('123');
- });
-
-
-//create a new connection to fswebcam and set some options
-/**
-var camelot = new camelot({
-  'device': '/dev/video0',
-  'jpeg': '95',
-  'resolution': '320x240'
-});
-
-camelot.on('frame', function (image) {
-  console.log('frame received!');
-});
-
-camelot.on('error', function (err) {
-  console.log(err);
-});
-
-//initiate camera recording - note: frequency = frames per second
-camelot.grab({
-  'title': 'Camera1',
-  'font': 'Arial:24',
-  'frequency': 1
-});
-**/
-
-var camera = new RaspiCam({
-        mode: "photo",
-        output: "webapp/photo/image.jpg",
-        encoding: "jpg",
-        timeout: 0 // take the picture immediately
-});
 exports.createRoutes = function(app) {
-    app.get('/api/start', function(req, res) {
-        console.log('doScean');
-        //开启定时抓拍
-        //doEveryScean();
-        var data = {
-            'msg': 'done',
-            'stat': 'ok'
-        }
-        res.send(200, data);
-    });
+    app.get('/api/take', function(req, res) {
+        console.log('---> 准备拍照 ----------');
+        var title = moment().format('YYYYMMDD-hhmmss-a');
+        var param = ["-d", "/dev/video0", "-r", "320*240"];
+        param.push("--title");
+        param.push(title);
+        param.push("--no-timestamp");
+        param.push("/home/pi/tmp/" + title + '.jpg');
+        var result = {};
+        console.log('---> Done');
 
-    app.get('/api/getPhoto', function(req, res) {
-        var data = {
-            'msg': 'ooo',
-            'stat': 'ok'
-        }
-        res.send(200, data);
-    });
+        console.log('---> 启动进程');
+        var fswebcam = spawn('fswebcam', param);
+        console.log('---> Done');
 
-    app.get('/api/cancle', function(req, res) {
-        times.stop();
-        var data = {
-            'msg': 'ooo',
-            'stat': 'ok'
-        }
-        res.send(200, data);
-    });
-
-
-}
-
-function doEveryScean() {
-    times = every('10s').do(function() {
-        console.log('start');
-        camera.on("started", function( err, timestamp ){
-                console.log("photo started at " + timestamp );
+        console.log('---> 准备数据');
+        fswebcam.on('exit', function () {
+            result = {
+                'stat': 'ok',
+                'id': title
+            }
         });
-
-        camera.on("read", function( err, timestamp, filename ){
-                console.log("photo image captured with filename: " + filename );
+        fswebcam.on('error', function() {
+            result = {
+                'stat': 'fail'
+            }
         });
+        if(typeof result.stat === 'undefined') {
+            result = {
+                'stat': 'fail'
+            }
+        }
+        console.log('---> Done');
 
-        camera.on("exit", function( timestamp ){
-                console.log("photo child process has exited at " + timestamp );
-        });
-
-        camera.start();
+        console.log('---> 发送数据');
+        res.send(200, result);
+        console.log('---> Done     ---------|');
     });
 }

@@ -1,38 +1,44 @@
 angular.module('EasyCamera',['ngResource']).config(function($routeProvider) {
     $routeProvider.when("/", {
-        controller: indexCtrl,
-        template: document.getElementById('J-action').text
+        controller: cameraCtrl,
+        template: document.getElementById('cameraView').text
     }).otherwise({
         redirectTo: "/"
     })
 });
 
-function indexCtrl($scope, $resource,$location) {
-    $scope.picture = 'me.jpg'
+function cameraCtrl($scope, $resource) {
+
+    var pictureHTML = 'src="/photo/thumb.jpg"';
+
 
     $scope.cameraAction = function() {
-        $resource('/api/start').get(function(data) {
-            $scope.picture = 'me.jpg';
-            console.log(data);
-            if(data.stat === 'ok') {
-                var test = setInterval(function() {
-                    $resource('/api/getPhoto').get(function(data) {
-                            $scope.picture = 'me.jpg';
-                    }, function() {
-                        console.log('123');
-                    });
-                }, 10000);
-            }
-        },function(e) {
-            console.log(e);
-        });
-    }
+        console.log('123');
+        $scope.test = '123111';
+        $scope.pictureDOM = 'src="/photo/me.jpg"';
+        /**
+         *  按钮不能点
+         */
 
-    $scope.cameraCancle = function() {
-        $resource('/api/cancle').get(function(data) {
+        /**
+         *  发起请求，拍照，返回结果
+         */
+        $resource('/api/take').get(function(data) {
+            //塞入图片
+
+            //按钮可点
+            if(data.stat === 'fail') {
+                $scope.errorMsg = 'fail';
+                $scope.picture = 'thumb.jpg';
+            }
+
             console.log(data);
-        },function(e) {
+
+        }, function(e) {
+            //报错
             console.log(e);
+            //按钮可点
         });
+
     }
 }

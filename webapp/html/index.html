@@ -6,26 +6,45 @@
 		<script src="script/angular.min.js"></script>
 		<script src="script/angular-resource.min.js"></script>
 		<script src="script/index.js"></script>
-        <link rel="stylesheet" href="style.css" />
+
+        <!-- Loading Bootstrap -->
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Loading Flat UI -->
+        <link href="css/flat-ui.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+
 	</head>
-	<body ng-view>
-            <script type="text/ng-template" id="J-logger">
-            </script>
-            <script type="text/ng-template" id="J-photo">
-            </script>
-            <script type="text/ng-template" id="J-action" ng-controller="indexCtrl">
-                <div class="camera">
-                    <div class="camera-head">
-                        <h1 class="logo">Camera</h1>
+	<body ng-view class="palette-midnight-blue">
+        <script type="text/ng-template" id="cameraView">
+            <div class="container" ng-controller="cameraCtrl" id="cameraView">
+                <div class="col-xs-12">
+                  <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                        <span class="sr-only">Toggle navigation</span>
+                      </button>
                     </div>
-                    <div class="camera-body"  ng-model="picture">
-                        <img src="http://localhost:3000/picture/{{ picture }}" width="300" height="200"/>
-                    </div>
-                    <div class="camera-foot">
-                        <a href="#" class="camera-foot-action" ng-click="cameraAction()">开启</a>
-                        <a href="#" class="camera-foot-cancle" ng-click="cameraCancle()">取消</a>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                      <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#fakelink">Remote Camera<span class="navbar-unread">1</span></a></li>
+                        <li><a href="#fakelink">About</a></li>
+                       </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </nav><!-- /navbar -->
+                </div>
+                <div class="col-xs-12">
+                    <div class="photo palette palette-wet-asphalt">
+                        {{errorMsg}}
+                        <div class="photo-cnt">
+                            <img src="/photo/{{picture}}" width="320" height="240" class="img-rounded img-responsive"/>
+                        </div>
                     </div>
                 </div>
-            </script>
+                <div class="col-xs-12 action">
+                    <a class="btn btn-primary btn-large btn-block" ng-click="cameraAction()"><span class="fui-photo"></span> Take a picture</a>
+                </div>
+            </div>
+        </script>
 	</body>
 </html>
