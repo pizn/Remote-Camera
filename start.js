@@ -32,6 +32,7 @@ exports.createRoutes = function(app) {
             }
             console.log('---> 成功，发送数据');
             res.send(200, result);
+            fswebcam.kill();
         });
         fswebcam.on('error', function() {
             console.log('error');
@@ -40,6 +41,7 @@ exports.createRoutes = function(app) {
             }
             console.log('---> 失败，发送数据');
             res.send(200, result);
+            fswebcam.kill();
         });
         console.log('---> Done     ---------|');
         console.log('');
