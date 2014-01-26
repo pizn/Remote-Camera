@@ -20,25 +20,15 @@
         <script type="text/ng-template" id="cameraView">
             <div class="container" ng-controller="cameraCtrl" id="cameraView">
                 <div class="col-xs-12">
-                  <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                        <span class="sr-only">Toggle navigation</span>
-                      </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-01">
-                      <ul class="nav navbar-nav navbar-left">
-                        <li><a href="#fakelink">Remote Camera<span class="navbar-unread">1</span></a></li>
-                        <li><a href="#fakelink">About</a></li>
-                       </ul>
-                    </div><!-- /.navbar-collapse -->
-                  </nav><!-- /navbar -->
+                    <h1 class="logo">
+                       <span class="fui-photo"></span> Remote Camera
+                    </h1>
                 </div>
                 <div class="col-xs-12">
                     <div class="photo palette palette-wet-asphalt">
                         {{errorMsg}}
-                        <div class="photo-cnt">
-                            <img src="/photo/{{picture}}" width="320" height="240" class="img-rounded img-responsive"/>
+                        <div class="photo-cnt {{class}}">
+                            <img src="/photo/{{picture}}" width="{{width}}" height="{{height}}" class="img-rounded img-responsive"/>
                         </div>
                     </div>
                 </div>
