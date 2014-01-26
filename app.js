@@ -5,7 +5,6 @@ var app = express();
 // app.use(express.logger());
 app.use(express.bodyParser());
 app.use(express.cookieParser());
-app.use(express.session({secret: config.cookieSecret}));
 app.use(express.static(__dirname + '/webapp'));
 app.use(app.router);
 
