@@ -6,11 +6,17 @@ exports.createRoutes = function(app) {
     app.get('/api/take', function(req, res) {
         console.log('---> 准备拍照 ----------');
         var title = moment().format('YYYYMMDD-hhmmss-a');
-        var param = ["-d", "/dev/video0", "-r", "320*240"];
+        //set picture
+        var param = [];
+        param.push("-d");
+        param.push(config.piVedioPath);
+        param.push("-r");
+        param.push(config.pictureXY);
         param.push("--title");
         param.push(title);
         param.push("--no-timestamp");
-        param.push("/home/pi/tmp/" + title + '.jpg');
+        param.push(config.picturePath + title + '.jpg');
+        //set result
         var result = {};
         console.log('---> Done');
 
@@ -40,5 +46,6 @@ exports.createRoutes = function(app) {
         console.log('---> 发送数据');
         res.send(200, result);
         console.log('---> Done     ---------|');
+        console.log('');
     });
 }
