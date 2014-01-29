@@ -7,6 +7,7 @@ var nodemailer = require('nodemailer');
 var cheerio = require('cheerio');
 var http =  require('http');
 var iconv = require('iconv-lite');
+var moment = require('moment');
 var url = 'http://iframe.ip138.com/ic.asp';
 
 /**
@@ -25,7 +26,7 @@ var sentMailModule = function(data) {
     var mailOptions = {
         from: "Remote-Camera get IP ✔ ",       // 发送地址
         to: config.sentToMail, // 接收列表
-        subject: "IP Address ✔",                             // 邮件主题
+        subject: moment().format('YYYYMMDD-hhmmss-a'),                             // 邮件主题
         text: data                          // 文本内容
     }
     //发送邮件
@@ -33,7 +34,7 @@ var sentMailModule = function(data) {
         if(error){
             console.log(error);
         }else{
-            console.log("邮件已经发送: " + response.message);
+            console.log(moment().format('YYYYMMDD-hhmmss-a') + "邮件已经发送: " + response.message);
         }
         //如果还需要实用其他的 smtp 协议，可将当前回话关闭
         smtpTransport.close();
