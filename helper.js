@@ -65,6 +65,6 @@ var getMessageModule = function(url) {
 /**
  * 启动定时任务
  */
-every('2s').do(function() {
+every('2h').do(function() {
     getMessageModule(url);
 });
