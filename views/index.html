@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<body ng-view class="palette-midnight-blue">
+<script type="text/ng-template" id="cameraView">
+    <div class="container" ng-controller="cameraCtrl" id="cameraView">
+        <div class="col-xs-12">
+            <h1 class="logo">
+               <span class="fui-photo"></span> Remote Camera
+            </h1>
+        </div>
+        <div class="col-xs-12">
+            <div class="photo palette palette-wet-asphalt">
+                {{errorMsg}}
+                <div class="photo-cnt">
+                    <img src="/photo/{{picture}}" width="320" height="240" class="img-rounded img-responsive"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 action">
+            <a class="btn btn-primary btn-large btn-block" ng-click="cameraAction()" ng-class="{disabled: doAction}"><span class="fui-photo"></span> Take a picture</a>
+        </div>
+        <div class="col-xs-12">
+            <p class="cp">
+            &copy;2014 by <a href="http://www.zhanxin.info">zhanxin.info</a>
+            </p>
+        </div>
+    </div>
+</script>
+</body>
+{% endblock %}

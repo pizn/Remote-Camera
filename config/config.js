@@ -3,6 +3,7 @@
  */
 
 // Server port
+console.log('----------------------');
 exports.port = 3000;
 
 // Photo type

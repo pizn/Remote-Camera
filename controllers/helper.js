@@ -1,4 +1,10 @@
-var config = require(__dirname + '/config.js');
+/**
+ * The helper for help me to get the IP address.
+ * Because my router always dynamically allocated
+ * ip address.
+ */
+
+var config = require('../config/config.js');
 /**
  * 由于路由器的ip地址是被服务商定期更换，所以需要获取下
  */

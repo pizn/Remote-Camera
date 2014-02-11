@@ -1,7 +1,7 @@
 /**
  * Camera.js
  */
-var config = require(__dirname + '/config/config.js');
+var config = require('../config/config.js');
 var moment = require('moment');
 var spawn = require('child_process').spawn;
 
