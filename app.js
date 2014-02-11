@@ -5,29 +5,28 @@ var app = express();
 
 app.use(express.bodyParser());
 app.use(express.cookieParser());
-app.use(express.static(__dirname + '/webapp'));
 app.use(app.router);
 
-app.engine('html', swig.renderFile);
+// Static
+app.use(express.static(__dirname + '/publish'));
 
+// Engine
+app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-/**
- * Include controllers
- */
+// Controllers
+var user = require(__dirname + '/controllers/login.js');
+user.doLoginCtrl(app);
+
 var remoteCamera = require(__dirname + '/controllers/camera.js');
 remoteCamera.cameraCtrl(app);
 
-/**
- * Include routes
- */
+// Routes
 var webapp = require(__dirname + '/routes/all.js');
 webapp.createRoutes(app);
 
-/**
- * Include helper
- */
+// Helper
 //require(__dirname + '/controllers/helper.js');
 
 app.listen(config.port);

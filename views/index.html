@@ -1,14 +1,37 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<body ng-view class="palette-midnight-blue">
-<script type="text/ng-template" id="cameraView">
-    <div class="container" ng-controller="cameraCtrl" id="cameraView">
-        <div class="col-xs-12">
-            <h1 class="logo">
-               <span class="fui-photo"></span> Remote Camera
-            </h1>
+
+<script type="text/ng-template" id="loginView">
+    <div class="container" >
+        <div class="login-title">
+            <h1 class="icon"><span class="fui-photo"></span></h1>
         </div>
+        <form class="login-form" ng-submit="doLogin()" name="loginForm" ng-controller="loginCtrl">
+            <p class="errorMsg">[[errorText]]</p>
+            <div class="login-form-item">
+                <label class="login-label"><span class="fui-user"></span></label>
+                <input type="email" class="login-input" placeholder="Email" ng-model="email" required/>
+            </div>
+            <div class="login-form-item login-form-dark">
+                <label class="login-label"><span class="fui-lock"></span></label>
+                <input type="password" class="login-input" placeholder="Password" ng-model="password" required/>
+            </div>
+            <div class="login-form-item">
+                <input type="submit" value="login" class="login-button" ng-disabled="loginForm.$invalid"/>
+            </div>
+        </form>
+        <div class="login-foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="cameraView">
+    <div class="container" ng-controller="cameraCtrl">
+
+        {{picture.item}}111111111111111111
+
         <div class="col-xs-12">
             <div class="photo palette palette-wet-asphalt">
                 {{errorMsg}}
@@ -27,5 +50,4 @@
         </div>
     </div>
 </script>
-</body>
 {% endblock %}
