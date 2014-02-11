@@ -37,6 +37,7 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
 
         loginError = function(msg) {
             $scope.errorMsg = msg;
+            $scope.errorClass = "login-error-show";
         }
 
     }

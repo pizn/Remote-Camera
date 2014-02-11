@@ -8,7 +8,9 @@
             <h1 class="icon"><span class="fui-photo"></span></h1>
         </div>
         <form class="login-form" ng-submit="doLogin()" name="loginForm" ng-controller="loginCtrl">
-            <p class="errorMsg">[[errorMsg]]</p>
+            <div class="login-error [[errorClass]]" >
+                <p>[[errorMsg]]</p>
+            </div>
             <div class="login-form-item">
                 <label class="login-label"><span class="fui-user"></span></label>
                 <input type="email" class="login-input" placeholder="Email" ng-model="email" required/>
@@ -18,8 +20,9 @@
                 <input type="password" class="login-input" placeholder="Password" ng-model="password" required/>
             </div>
             <div class="login-form-item">
-                <input type="submit" value="login" class="login-button login-botton-disabled" ng-class="[]" ng-disabled="loginForm.$invalid"/>
+                <input type="submit" value="login" class="login-button" ng-disabled="loginForm.$invalid"/>
             </div>
+
         </form>
         <div class="login-foot">
             <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
@@ -29,8 +32,6 @@
 
 <script type="text/ng-template" id="cameraView">
     <div class="container" ng-controller="cameraCtrl">
-
-        {{picture.item}}111111111111111111
 
         <div class="col-xs-12">
             <div class="photo palette palette-wet-asphalt">

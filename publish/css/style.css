@@ -337,6 +337,7 @@ a:focus {
 }
 .container {
     padding: 20px 0px;
+    position: relative;
 }
 
 /****** Login page ******/
@@ -356,6 +357,7 @@ a:focus {
     color: #b3bcd0;
 }
 .login-form {
+    position: relative;
     padding: 20px 15px;
     display: block;
     width: 270px;
@@ -412,7 +414,7 @@ a:focus {
     height: 45px;
     border: none;
     border-radius: 3px 3px;
-    background: #53b7cb;
+    background: #39d1ea;
     font-size: 18px;
     color: #fff;
     display: block;
@@ -420,8 +422,22 @@ a:focus {
     cursor: pointer;
     text-align: center;
 }
-.login-botton-disabled {
+input:disabled {
     background: #438b9c;
+}
+.login-error {
+    position: absolute;
+    display: none;
+    top: -25px;
+    left: 15px;
+    width: 240px;
+    padding: 5px 15px;
+    background: #ff6b6e;
+    font-size: 14px;
+    border-radius: 3px 3px;
+}
+.login-error-show {
+    display: block;
 }
 
 .login-foot {
