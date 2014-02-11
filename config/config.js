@@ -11,6 +11,6 @@ exports.pictureXY = "320*240";
 exports.picturePath = "/home/pi/tmp/";
 
 // Email server
-exports.email = "pizner@gmail.com";
-exports.password = "zhanxin.lin!";
-exports.sentToMail = "297118711@qq.com";
+exports.email = "youremail";
+exports.password = "******";
+exports.sentToMail = "youremail";
