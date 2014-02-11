@@ -36,8 +36,6 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
         }
 
         loginError = function(msg) {
-            alert(msg);
-            console.log($scope);
             $scope.errorMsg = msg;
         }
 
@@ -45,7 +43,7 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
 });
 
 remoteCamera.controller('cameraCtrl', function($scope, $resource) {
-    console.log($scope);
+
     var picture = {
         item: '123'
     }

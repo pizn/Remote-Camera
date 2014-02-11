@@ -8,7 +8,7 @@
             <h1 class="icon"><span class="fui-photo"></span></h1>
         </div>
         <form class="login-form" ng-submit="doLogin()" name="loginForm" ng-controller="loginCtrl">
-            <p class="errorMsg">[[errorText]]</p>
+            <p class="errorMsg">[[errorMsg]]</p>
             <div class="login-form-item">
                 <label class="login-label"><span class="fui-user"></span></label>
                 <input type="email" class="login-input" placeholder="Email" ng-model="email" required/>
@@ -18,7 +18,7 @@
                 <input type="password" class="login-input" placeholder="Password" ng-model="password" required/>
             </div>
             <div class="login-form-item">
-                <input type="submit" value="login" class="login-button" ng-disabled="loginForm.$invalid"/>
+                <input type="submit" value="login" class="login-button login-botton-disabled" ng-class="[]" ng-disabled="loginForm.$invalid"/>
             </div>
         </form>
         <div class="login-foot">

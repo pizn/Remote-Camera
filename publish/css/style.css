@@ -420,6 +420,9 @@ a:focus {
     cursor: pointer;
     text-align: center;
 }
+.login-botton-disabled {
+    background: #438b9c;
+}
 
 .login-foot {
     padding: 10px 15px;
