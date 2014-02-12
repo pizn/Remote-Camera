@@ -8,11 +8,18 @@ var remoteCamera = angular.module('RemoteCamera',['ngResource'], function ($inte
         }).when("/camera", {
             controller: remoteCamera.cameraCtrl,
             template: document.getElementById('cameraView').text
+        }).when("/menu", {
+            controller: remoteCamera.menuCtrl,
+            template: document.getElementById('menuView').text
         }).otherwise({
             redirectTo: "/"
     })
 });
 remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
+
+    if(connected) {
+        return $location.path("/camera");
+    }
 
     $scope.doLogin = function() {
         var values = {
@@ -32,6 +39,7 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
         });
 
         loginSuccess = function() {
+            connected = true;
             $location.path("/camera");
         }
 
@@ -43,17 +51,23 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
     }
 });
 
-remoteCamera.controller('cameraCtrl', function($scope, $resource) {
-
-    var picture = {
-        item: '123'
+remoteCamera.controller('cameraCtrl', function($scope, $resource, $location) {
+    if(!connected) {
+        return $location.path("/");
     }
 
-    $scope.picture = picture;
-    $scope.text = '1231313';
-
+    $scope.photoInfo = 'Remote Camera';
+    $scope.photoStyle = {
+        backgroundImage:'url(/images/bg.jpg)'
+    };
+    /**
+     * Take a photo
+     */
     $scope.cameraAction = function() {
-        $scope.picture = 'loading.jpg';
+        delete $scope.cameraErr;
+        $scope.photoStyle = {
+            backgroundImage:'url(/images/loading.jpg)'
+        };
         $scope.doAction = true;
         /**
          *  发起请求，拍照，返回结果
@@ -61,18 +75,56 @@ remoteCamera.controller('cameraCtrl', function($scope, $resource) {
         $resource('/api/take').get(function(data) {
             //塞入图片
             if(data.stat === 'ok') {
-                $scope.picture = data.id + '.jpg';
+                delete $scope.cameraErr;
+                var picture = 'url(/photo/' + data.id + '.jpg' + ')';
+                $scope.photoStyle = {
+                    backgroundImage: picture
+                };
                 $scope.doAction = false;
-            } else {
-                $scope.errorMsg = 'Sorry, I can\'t get the photo';
-                $scope.picture = 'thumb.jpg';
+            } else if(data.stat === 'fail') {
+                $scope.cameraErr = 'Sorry, I can\'t get the photo';
+                $scope.photoStyle = {
+                    backgroundImage:'url(/images/error.jpg)'
+                };
                 $scope.doAction = false;
+            } else if(data.stat === 'deny') {
+                $location.path("/");
             }
-        }, function(e) {
-            $scope.errorMsg = 'fail';
-            $scope.picture = 'thumb.jpg';
+        }, function() {
+            $scope.cameraErr = 'fail';
+            $scope.photoStyle = {
+                backgroundImage:'url(/images/error.jpg)'
+            };
             $scope.doAction = false;
         });
-
     }
+    /**
+     * Show menu
+     */
+    $scope.openMenu = function() {
+        $location.path("/menu");
+    }
+});
+
+
+remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
+    if(!connected) {
+        return $location.path("/");
+    }
+
+    /**
+     * Take photo
+     */
+    $scope.takePhoto = function() {
+        $location.path('/camera');
+    }
+
+    /**
+     * Logout
+     */
+    $scope.doLogout = function() {
+        $location.path("/");
+        connected = false;
+    }
+
 });

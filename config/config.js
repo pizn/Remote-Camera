@@ -5,6 +5,7 @@
 // Server port
 console.log('----------------------');
 exports.port = 3000;
+exports.cookieSecret = "34a39cb01f43cb9463d656a3e2ec8b54";
 
 // Rex
 exports.emailRegex = new RegExp("^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$");

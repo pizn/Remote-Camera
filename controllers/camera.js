@@ -8,6 +8,14 @@ var spawn = require('child_process').spawn;
 exports.cameraCtrl = function(app) {
     // Take the photo form the Remote camera
     app.get('/api/take', function(req, res) {
+
+        if (!req.session.user) {
+            var message = {
+                'stat': 'deny'
+            }
+            res.send(200, message);
+        }
+
         //console.log('---> 准备拍照 ----------');
         var title = moment().format('YYYYMMDD-hhmmss-a');
         //set picture

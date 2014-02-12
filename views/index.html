@@ -4,7 +4,7 @@
 
 <script type="text/ng-template" id="loginView">
     <div class="container" >
-        <div class="login-title">
+        <div class="logo">
             <h1 class="icon"><span class="fui-photo"></span></h1>
         </div>
         <form class="login-form" ng-submit="doLogin()" name="loginForm" ng-controller="loginCtrl">
@@ -22,9 +22,8 @@
             <div class="login-form-item">
                 <input type="submit" value="login" class="login-button" ng-disabled="loginForm.$invalid"/>
             </div>
-
         </form>
-        <div class="login-foot">
+        <div class="foot">
             <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
         </div>
     </div>
@@ -32,23 +31,75 @@
 
 <script type="text/ng-template" id="cameraView">
     <div class="container" ng-controller="cameraCtrl">
-
-        <div class="col-xs-12">
-            <div class="photo palette palette-wet-asphalt">
-                {{errorMsg}}
-                <div class="photo-cnt">
-                    <img src="/photo/{{picture}}" width="320" height="240" class="img-rounded img-responsive"/>
-                </div>
+        <div class="camera-photo" ng-style="photoStyle" >
+            <div class="camera-photo-menu">
+                <a class="list-btn" ng-click="openMenu()"><span class="fui-list"></span></a>
             </div>
-        </div>
-        <div class="col-xs-12 action">
-            <a class="btn btn-primary btn-large btn-block" ng-click="cameraAction()" ng-class="{disabled: doAction}"><span class="fui-photo"></span> Take a picture</a>
-        </div>
-        <div class="col-xs-12">
-            <p class="cp">
-            &copy;2014 by <a href="http://www.zhanxin.info">zhanxin.info</a>
+            <div class="camera-photo-info">
+                <p>[[photoInfo]]</p>
+            </div>
+            <p class="camera-photo-error">
+                [[cameraErr]]
             </p>
+        </div>
+        <div class="camera-action">
+            <a class="camera-btn" ng-click="cameraAction()" ng-class="{disabled: camera-btn-disabled}"><span class="fui-photo"></span></a>
+        </div>
+        <div class="foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
         </div>
     </div>
 </script>
+
+<script type="text/ng-template" id="menuView">
+    <div class="container" ng-controller="menuCtrl">
+        <div class="logo">
+            <h1 class="icon"><span class="fui-photo"></span></h1>
+        </div>
+        <ul class="menu">
+            <li class="menu-list">
+                <a class="menu-list-link">
+                    <span class="icon fui-eye"></span>
+                    <span class="text">Watch all</span>
+                </a>
+            </li>
+            <li class="menu-list">
+                <a class="menu-list-link" ng-click="takePhoto()">
+                    <span class="icon fui-photo"></span>
+                    <span class="text">
+                        Take a photo
+                    </span>
+                </a>
+            </li>
+            <li class="menu-list">
+                <a class="menu-list-link">
+                    <span class="icon fui-mail"></span>
+                    <span class="text">Mail setting</span>
+                </a>
+            </li>
+            <li class="menu-list">
+                <a class="menu-list-link">
+                    <span class="icon fui-gear"></span>
+                    <span class="text">System</span>
+                </a>
+            </li>
+            <li class="menu-list">
+                <a class="menu-list-link">
+                    <span class="icon fui-heart"></span>
+                    <span class="text">About</span>
+                </a>
+            </li>
+            <li class="menu-list">
+                <a class="menu-list-link" ng-click="doLogout()">
+                    <span class="icon fui-user"></span>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+        <div class="foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
+        </div>
+    </div>
+</script>
+
 {% endblock %}

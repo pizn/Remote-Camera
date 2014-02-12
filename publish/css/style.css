@@ -324,25 +324,21 @@ body {
 
 a {
     color: #979faf;
-  text-decoration: none;
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
+    text-decoration: none;
 }
 a:hover,
 a:focus {
-  text-decoration: none;
+    text-decoration: none;
 }
 a:focus {
-  outline: none;
+    outline: none;
 }
 .container {
     padding: 20px 0px;
     position: relative;
 }
 
-/****** Login page ******/
-
-.login-title {
+.logo {
     width: 270px;
     height: 80px;
     margin: 0 auto;
@@ -351,11 +347,28 @@ a:focus {
     background: #5a6377;
     border-radius: 3px 3px 0 0;
 }
-.login-title .icon {
+.logo .icon {
     font-size: 60px;
     line-height: 80px;
     color: #b3bcd0;
 }
+.foot {
+    padding: 10px 15px;
+    margin: 0 auto;
+    width: 270px;
+    height: auto;
+    background: #393f4e;
+    border-radius: 0 0 3px 3px;
+}
+.foot p {
+    color: #979faf;
+    text-align: right;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+/****** Login page ******/
+
 .login-form {
     position: relative;
     padding: 20px 15px;
@@ -413,8 +426,9 @@ a:focus {
     line-height: 45px;
     height: 45px;
     border: none;
+    -webkit-border-radius: 3px 3px;
     border-radius: 3px 3px;
-    background: #39d1ea;
+    background: #39d1ea !important;
     font-size: 18px;
     color: #fff;
     display: block;
@@ -423,7 +437,7 @@ a:focus {
     text-align: center;
 }
 input:disabled {
-    background: #438b9c;
+    background: #438b9c !important;
 }
 .login-error {
     position: absolute;
@@ -440,18 +454,139 @@ input:disabled {
     display: block;
 }
 
-.login-foot {
-    padding: 10px 15px;
-    margin: 0 auto;
-    width: 270px;
-    height: auto;
-    background: #393f4e;
-    border-radius: 0 0 3px 3px;
-}
-.login-foot p {
-    color: #979faf;
-    text-align: right;
-    font-size: 14px;
-    line-height: 25px;
-}
+
 /****** Camera page ******/
+.camera-photo {
+    width: 270px;
+    height: 200px;
+    border-radius: 3px 3px 0 0;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 15px 20px 15px;
+    background-color: #5a6377;
+    position: relative;
+}
+.camera-photo-menu {
+    position: absolute;
+    width: 270px;
+    padding: 10px 15px;
+    height: 30px;
+    top: 0;
+    left: 0;
+}
+.camera-photo-menu:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:" ";
+    clear:both;
+    height:0;
+}
+.camera-photo-menu .list-btn {
+    width: 30px;
+    height: 30px;
+    display: block;
+    float: left;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+}
+.camera-photo-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 10px 15px;
+    width: 270px;
+    line-height: 35px;
+    font-size: 14px;
+    border-radius: 3px 3px;
+    color: #d4d7da;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+.camera-photo-error {
+    position: absolute;
+    width: 270px;
+    bottom: 0;
+    left: 0;
+    margin: 10px 15px;
+    height: auto;
+    font-size: 14px;
+    line-height: 35px;
+    border-radius: 3px 3px;
+    color: #fff;
+    z-index: 101;
+    background: #ff6b6e;
+}
+.camera-action {
+    border-top: 2px solid #545c6f;
+    width: 270px;
+    text-align: center;
+    padding: 20px 15px;
+    margin: 0 auto;
+    height: auto;
+    background: #5a6377;
+}
+.camera-action .camera-btn {
+    display: block;
+    line-height: 40px;
+    font-size: 30px;
+    background: #5dd1e9;
+    color: #fff;
+    border-radius: 3px 3px;
+}
+.camera-action .camera-btn-disabled {
+    background: #438b9c;
+}
+/****** Menu page ******/
+.menu {
+    border-top: 1px solid #545c6f;
+    border-bottom: 1px solid #545c6f;
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    height: auto;
+    background: #5a6377;
+}
+.menu:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:" ";
+    clear:both;
+    height:0;
+}
+.menu-list {
+    float: left;
+    width: 98px;
+    height: 98px;
+    display: block;
+    border: 1px solid #545c6f;
+}
+.menu-list-link {
+    padding: 10px 0;
+    width: 98px;
+    height: 78px;
+    display: block;
+    text-align: center;
+}
+.menu-list-link:hover {
+    background: #545c6f;
+}
+.menu-list-link:hover .icon {
+    color: #5dd1e9;
+}
+.menu-list-link .icon {
+    width: 100%;
+    display: block;
+    font-size: 32px;
+    vertical-align: middle;
+    line-height: 54px;
+}
+.menu-list-link .text {
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    color: #b3bcd0;
+}
