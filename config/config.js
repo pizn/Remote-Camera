@@ -3,7 +3,6 @@
  */
 
 // Server port
-console.log('----------------------');
 exports.port = 3000;
 exports.cookieSecret = "34a39cb01f43cb9463d656a3e2ec8b54";
 

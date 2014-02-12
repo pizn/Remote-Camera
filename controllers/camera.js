@@ -8,7 +8,6 @@ var spawn = require('child_process').spawn;
 exports.cameraCtrl = function(app) {
     // Take the photo form the Remote camera
     app.get('/api/take', function(req, res) {
-
         if (!req.session.user) {
             var message = {
                 'stat': 'deny'
@@ -57,6 +56,7 @@ exports.cameraCtrl = function(app) {
         });
         //console.log('---> Done     ---------|');
         //console.log('');
+        console.log('[info] User %s do camear', req.session.user);
     });
 }
 

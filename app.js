@@ -3,7 +3,8 @@ var express = require('express');
 var swig = require('swig');
 var app = express();
 
-app.use(express.bodyParser());
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(express.cookieParser());
 app.use(express.session({secret: config.cookieSecret}));
 app.use(app.router);
@@ -31,4 +32,4 @@ webapp.createRoutes(app);
 //require(__dirname + '/controllers/helper.js');
 
 app.listen(config.port);
-console.log("Server started and listening on port " + config.port);
+console.log("[info] Server started and listening on port " + config.port);

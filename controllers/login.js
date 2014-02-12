@@ -4,6 +4,10 @@
 var config = require('../config/config.js');
 
 exports.doLoginCtrl = function(app) {
+
+    /**
+     *  doLogin
+     */
     app.post("/api/login", function(req, res) {
         var email = req.param('email');
         var password = req.param('password');
@@ -50,13 +54,15 @@ exports.doLoginCtrl = function(app) {
                 msg: "Welcome"
             }
             req.session.user = email;
-            console.log("[info ] user %s connected", email);
+            console.log("[info] User %s connected", email);
             res.send(200, message);
         }
 
     });
 
-
+    /**
+     * doLogout
+     */
     app.delete("/api/login", function (req, res) {
         var message = {
             'stat': 'fail',
@@ -70,7 +76,7 @@ exports.doLoginCtrl = function(app) {
             res.send(200, message);
             return false;
         }
-        console.log("[info ] user %s disconnect", req.session.user);
+        console.log("[info] User %s disconnect", req.session.user);
         delete req.session.user;
         message = {
             'stat': 'ok',

@@ -3,12 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}Remote Camera{% endblock %}</title>
-
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Easy Camera" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-
     <link rel="apple-touch-startup-image" href="/images/start.jpg" />
     <link rel="apple-touch-startup-image" href="/images/start.jpg" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-icon-precomposed" href="/images/54.jpg">
@@ -19,11 +17,7 @@
     <script type="text/javascript">connected = {{alreadyLogged}};</script>
     <script src="script/angular.min.js"></script>
     <script src="script/angular-resource.min.js"></script>
-    <script src="script/index.js"></script>
-
-    <link href="css/style.css" rel="stylesheet">
-    {% block head %}
-    {% endblock %}
+    {% block head %}{% endblock %}
 </head>
 <body ng-view>
 {% block content %}{% endblock %}

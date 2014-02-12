@@ -1,3 +1,9 @@
+/**
+ * @name: camera.js
+ * @author: zhanxin.lin < pizner@gmail.com >
+ * @create: 2014.02
+ * @desc: Just for Remote Camera
+ */
 var remoteCamera = angular.module('RemoteCamera',['ngResource'], function ($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
@@ -15,8 +21,9 @@ var remoteCamera = angular.module('RemoteCamera',['ngResource'], function ($inte
             redirectTo: "/"
     })
 });
-remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
 
+// loginCtrl
+remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
     if(connected) {
         return $location.path("/camera");
     }
@@ -51,6 +58,8 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
     }
 });
 
+
+// cameraCtrl
 remoteCamera.controller('cameraCtrl', function($scope, $resource, $location) {
     if(!connected) {
         return $location.path("/");
@@ -83,9 +92,6 @@ remoteCamera.controller('cameraCtrl', function($scope, $resource, $location) {
                 $scope.doAction = false;
             } else if(data.stat === 'fail') {
                 $scope.cameraErr = 'Sorry, I can\'t get the photo';
-                $scope.photoStyle = {
-                    backgroundImage:'url(/images/error.jpg)'
-                };
                 $scope.doAction = false;
             } else if(data.stat === 'deny') {
                 $location.path("/");
@@ -106,12 +112,11 @@ remoteCamera.controller('cameraCtrl', function($scope, $resource, $location) {
     }
 });
 
-
+// menuCtrl
 remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
     if(!connected) {
         return $location.path("/");
     }
-
     /**
      * Take photo
      */
@@ -123,8 +128,10 @@ remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
      * Logout
      */
     $scope.doLogout = function() {
-        $location.path("/");
-        connected = false;
+        $resource('/api/login').delete({}, function () {
+            connected = false;
+            $location.path("/");
+        });
     }
 
 });
