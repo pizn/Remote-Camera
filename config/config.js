@@ -20,5 +20,9 @@ exports.emailTimes = '3h';
 exports.password = "111111";
 exports.sentToMail = "youremail";
 
+// User config
+exports.username = "admin@rc.com";
+exports.userpwd = "123456";
+
 // Version
 exports.version = "0.0.2";

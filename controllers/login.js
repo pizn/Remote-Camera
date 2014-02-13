@@ -35,14 +35,14 @@ exports.doLoginCtrl = function(app) {
             return false;
         }
         // Check user
-        if( email !== config.email) {
+        if( email !== config.username) {
             message = {
                 stat: "fail",
                 msg: "Error user"
             }
             res.send(200, message);
             return false;
-        } else if(password !== config.password) {
+        } else if(password !== config.userpwd) {
             message = {
                 stat: "fail",
                 msg: "Error password"
