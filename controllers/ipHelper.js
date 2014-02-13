@@ -68,7 +68,7 @@ var getMessageModule = function(url) {
             if(currentData !== '') {
                 rounterIP = $($(currentData.split('['))[1].split(']'))[0];
             }
-            var linkDom = '<br />Please click <a href="http://' + rounterIP + '" >' + rounterIP + '</a> to enjoy!';
+            var linkDom = 'Please click http://' + rounterIP + ' to enjoy!';
             currentData = currentData + linkDom;
             sentMailModule(currentData);
         });
