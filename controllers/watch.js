@@ -79,7 +79,7 @@ exports.watchPhotosCtrl = function(app) {
             res.send(200, message);
         }
         var photoPath = "publish/photo/" + req.params.name;
-        console.log('[info ] Photo %s will be delete', req.params.name);
+        console.log('[info] Photo %s will be delete', req.params.name);
         fs.unlink(photoPath, function(err) {
             if(err) {
                 message = {

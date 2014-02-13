@@ -117,6 +117,9 @@ table {
 input, select {
     vertical-align:middle;
 }
+input {
+    -webkit-appearance:none;
+}
 
 /****** Font ******/
 @font-face {
@@ -428,7 +431,7 @@ a:focus {
     border: none;
     -webkit-border-radius: 3px 3px;
     border-radius: 3px 3px;
-    background: #39d1ea !important;
+    background: #39d1ea;
     font-size: 18px;
     color: #fff;
     display: block;
@@ -437,7 +440,7 @@ a:focus {
     text-align: center;
 }
 input:disabled {
-    background: #438b9c !important;
+    background: #438b9c;
 }
 .login-error {
     position: absolute;
