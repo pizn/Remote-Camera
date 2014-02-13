@@ -68,7 +68,7 @@ var getMessageModule = function(url) {
             if(currentData !== '') {
                 rounterIP = $($(currentData.split('['))[1].split(']'))[0];
             }
-            var content = 'Good job! \n The IP address is [' + rounterIP +'].The Remote Camera send you a email! We got the newer IP address, please click http://' + rounterIP + ' to enjoy!';
+            var content = 'Hello Sir!\nRemote Camera got the IP address is [' + rounterIP +'].\nPlease click http://' + rounterIP + ' to enjoy!';
             sentMailModule(content);
         });
     }).on('error', function() {
