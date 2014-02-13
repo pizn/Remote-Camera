@@ -32,14 +32,14 @@ var sentMailModule = function(data) {
     var mailOptions = {
         from: "Remote-Camera get the IP Address",
         to: config.sentToMail,
-        subject: moment().format('YYYYMMDD-hhmmss-a'),
+        subject: moment().format('MMDD-hhmm-a'),
         text: data
     }
     smtpTransport.sendMail(mailOptions, function(error, response){
         if(error){
             console.log('[error] Sent email error');
         }else{
-            console.log('[info]' + moment().format('YYYYMMDD-hhmmss-a') + " mail send " + response.message);
+            console.log('[info]' + moment().format('MMDD-hhmm-a') + " mail send " + response.message);
         }
         //如果还需要实用其他的 smtp 协议，可将当前回话关闭
         smtpTransport.close();
@@ -68,7 +68,7 @@ var getMessageModule = function(url) {
             if(currentData !== '') {
                 rounterIP = $($(currentData.split('['))[1].split(']'))[0];
             }
-            var content = 'Good job! The Remote Camera send you a email! We got the newer IP address, please click http://' + rounterIP + ' to enjoy!';
+            var content = 'Good job! \n The IP address is [' + rounterIP +'].The Remote Camera send you a email! We got the newer IP address, please click http://' + rounterIP + ' to enjoy!';
             sentMailModule(content);
         });
     }).on('error', function() {
