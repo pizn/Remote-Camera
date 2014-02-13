@@ -18,3 +18,6 @@ exports.picturePath = "/home/pi/tmp/";
 exports.email = "test@123.com";
 exports.password = "111111";
 exports.sentToMail = "youremail";
+
+// Version
+exports.version = "0.0.2";

@@ -23,6 +23,12 @@ var remoteCamera = angular.module('RemoteCamera',['ngResource'], function ($inte
         }).when("/address", {
             controller: remoteCamera.ipAddressCtrl,
             template: document.getElementById('ipAddressView').text
+        }).when("/system", {
+            controller: remoteCamera.systemCtrl,
+            template: document.getElementById('systemView').text
+        }).when("/about", {
+            controller: remoteCamera.aboutCtrl,
+            template: document.getElementById('aboutView').text
         }).otherwise({
             redirectTo: "/"
     })
@@ -149,6 +155,14 @@ remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
     }
 
     /**
+     * About
+     */
+    $scope.showAbout = function() {
+        $location.path('/about');
+        return true;
+    }
+
+    /**
      * Logout
      */
     $scope.doLogout = function() {
@@ -227,6 +241,9 @@ remoteCamera.controller('ipAddressCtrl', function($scope, $resource, $location) 
         return $location.path("/");
     }
 
+    $scope.hostIP = "0.0.0.0";
+    $scope.routerIP = "0.0.0.0";
+
     $scope.openMenu = function() {
         $location.path("/menu");
     }
@@ -252,4 +269,37 @@ remoteCamera.controller('ipAddressCtrl', function($scope, $resource, $location) 
             }
         });
     }
+});
+
+remoteCamera.controller('aboutCtrl', function($scope, $resource, $location) {
+    if(!connected) {
+        return $location.path("/");
+    }
+    $resource('/api/version').get(function(data) {
+        if(data.stat === 'ok') {
+            $scope.version = data.version;
+        } else if(data.stat === 'deny') {
+            $location.path("/");
+        }
+    });
+
+    $scope.openMenu = function() {
+        $location.path('/menu');
+    }
+});
+
+remoteCamera.controller('systemCtrl', function($scope, $resource, $location) {
+//    if(!connected) {
+//        return $location.path("/");
+//    }
+    $resource('/api/system').get(function(data) {
+        if(data.stat === 'ok') {
+            $scope.hostname = data.info.hostname;
+            $scope.platform = data.info.platform;
+            $scope.totalmem = data.info.totalmem + ' KB';
+            $scope.usedmem = data.info.usedmem + ' KB';
+        } else if(data.stat === 'deny') {
+            $location.path('/');
+        }
+    });
 });

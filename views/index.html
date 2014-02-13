@@ -90,7 +90,7 @@
                 </a>
             </li>
             <li class="menu-list">
-                <a class="menu-list-link">
+                <a class="menu-list-link" ng-click="showAbout()">
                     <span class="icon fui-heart"></span>
                     <span class="text">About</span>
                 </a>
@@ -169,6 +169,85 @@
         </div>
         <div class="camera-info">
             <p>Help to your server IP -- Remote Camera</p>
+        </div>
+        <div class="foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="aboutView">
+    <div class="container" ng-controller="aboutCtrl">
+        <div class="about">
+            <div class="about-menu">
+                <a class="list-btn" ng-click="openMenu()"><span class="fui-arrow-left"></span></a>
+                <span class="about-menu-title">About</span>
+            </div>
+            <div class="about-detail">
+                <div class="logo">
+                    <h1 class="icon"><span class="fui-photo"></span></h1>
+                </div>
+                <div class="version">
+                    <h2>Remote Camera</h2>
+                    <p>Version [[version]]</p>
+                </div>
+                <div class="about-link">
+                    <a href="https://github.com/pizn/remote-camera" target="_blank" class="github">Project on GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="systemView">
+    <div class="container" ng-controller="systemCtrl">
+        <div class="system">
+            <div class="system-menu">
+                <a class="list-btn" ng-click="openMenu()"><span class="fui-arrow-left"></span></a>
+                <span class="system-menu-title">System</span>
+            </div>
+            <ul class="system-list">
+                <li>
+                    <div class="title">
+                        <span class="fui-radio-unchecked"></span>
+                    </div>
+                    <div class="value">
+                        <p class="top">Hostname:</p>
+                        <p class="bottom">[[hostname]]</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span class="fui-radio-unchecked"></span>
+                    </div>
+                    <div class="value">
+                        <p class="top">Platform:</p>
+                        <p class="bottom">[[platform]]</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span class="fui-radio-unchecked"></span>
+                    </div>
+                    <div class="value">
+                        <p class="top">Totalmem:</p>
+                        <p class="bottom">[[totalmem]]</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">
+                        <span class="fui-radio-unchecked"></span>
+                    </div>
+                    <div class="value">
+                        <p class="top">Usedmem:</p>
+                        <p class="bottom">[[usedmem]]</p>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="foot">
             <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>

@@ -58,6 +58,26 @@ exports.cameraCtrl = function(app) {
         //console.log('');
         console.log('[info] User %s do camear', req.session.user);
     });
+
+    app.get('/api/version', function(req, res) {
+        var message = {
+            'stat': 'deny'
+        }
+        if (!req.session.user) {
+            var message = {
+                'stat': 'deny'
+            }
+            res.send(200, message);
+        }
+
+        var version = config.version;
+
+        message = {
+            'stat': 'ok',
+            'version': version
+        }
+        res.send(200, message);
+    });
 }
 
 

@@ -35,5 +35,9 @@ webapp.createRoutes(app);
 var address = require(__dirname + '/controllers/ipHelper.js');
 address.ipHelperCtrl(app);
 
+// System
+var os = require(__dirname + '/controllers/system.js');
+os.systemCtrl(app);
+
 app.listen(config.port);
 console.log("[info] Server started and listening on port " + config.port);
