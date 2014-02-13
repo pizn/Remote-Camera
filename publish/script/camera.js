@@ -102,6 +102,7 @@ remoteCamera.controller('cameraCtrl', function($scope, $resource, $location) {
                     backgroundImage: picture
                 };
                 $scope.doAction = false;
+                $scope.photoInfo = data.id;
             } else if(data.stat === 'fail') {
                 $scope.cameraErr = 'Sorry, I can\'t get the photo';
                 $scope.doAction = false;
