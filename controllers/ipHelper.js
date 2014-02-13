@@ -30,7 +30,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 var sentMailModule = function(data) {
     var mailOptions = {
-        from: "Remote-Camera get IP ✔ ",
+        from: "Remote-Camera get the IP Address",
         to: config.sentToMail,
         subject: moment().format('YYYYMMDD-hhmmss-a'),
         text: data
@@ -59,12 +59,18 @@ var getMessageModule = function(url) {
         });
         //获取到数据 source，我们可以对数据进行操作了!
         res.on('end', function() {
-            //console.log(source);
+            // console.log(source);
             var html = iconv.decode(bufferHelper.toBuffer(),'GBK');
             var $ = cheerio.load(html);
+            // will be: 您的IP是：[x.x.x.x] 来自：xxx 电信
             var currentData = $("center").html();
-            console.log(currentData);
-            //sentMailModule(currentData);
+            var rounterIP;
+            if(currentData !== '') {
+                rounterIP = $($(currentData.split('['))[1].split(']'))[0];
+            }
+            var linkDom = '<br />Please click <a href="http://' + rounterIP + '" >' + rounterIP + '</a> to enjoy!';
+            currentData = currentData + linkDom;
+            sentMailModule(currentData);
         });
     }).on('error', function() {
         console.log("[error] Get data error!");
@@ -163,9 +169,9 @@ exports.ipHelperCtrl = function(app) {
     /**
      * 启动定时任务
      */
-//    every('2s').do(function() {
-//        getMessageModule(url);
-//    });
+    every(config.emailTimes).do(function() {
+        getMessageModule(url);
+    });
 }
 
 

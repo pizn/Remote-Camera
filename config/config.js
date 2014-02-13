@@ -16,6 +16,7 @@ exports.picturePath = "/home/pi/tmp/";
 
 // Email server
 exports.email = "test@123.com";
+exports.emailTimes = '3h';
 exports.password = "111111";
 exports.sentToMail = "youremail";
 
