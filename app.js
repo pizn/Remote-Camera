@@ -24,12 +24,16 @@ user.doLoginCtrl(app);
 var remoteCamera = require(__dirname + '/controllers/camera.js');
 remoteCamera.cameraCtrl(app);
 
+var photos = require(__dirname + '/controllers/watch.js');
+photos.watchPhotosCtrl(app);
+
 // Routes
 var webapp = require(__dirname + '/routes/all.js');
 webapp.createRoutes(app);
 
 // Helper
-//require(__dirname + '/controllers/helper.js');
+var address = require(__dirname + '/controllers/ipHelper.js');
+address.ipHelperCtrl(app);
 
 app.listen(config.port);
 console.log("[info] Server started and listening on port " + config.port);

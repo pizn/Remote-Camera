@@ -17,6 +17,12 @@ var remoteCamera = angular.module('RemoteCamera',['ngResource'], function ($inte
         }).when("/menu", {
             controller: remoteCamera.menuCtrl,
             template: document.getElementById('menuView').text
+        }).when("/photos", {
+            controller: remoteCamera.watchPhotosCtrl,
+            template: document.getElementById('photosView').text
+        }).when("/address", {
+            controller: remoteCamera.ipAddressCtrl,
+            template: document.getElementById('ipAddressView').text
         }).otherwise({
             redirectTo: "/"
     })
@@ -47,7 +53,7 @@ remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
 
         loginSuccess = function() {
             connected = true;
-            $location.path("/camera");
+            $location.path("/menu");
         }
 
         loginError = function(msg) {
@@ -65,7 +71,7 @@ remoteCamera.controller('cameraCtrl', function($scope, $resource, $location) {
         return $location.path("/");
     }
 
-    $scope.photoInfo = 'Remote Camera';
+    $scope.photoInfo = '';
     $scope.photoStyle = {
         backgroundImage:'url(/images/bg.jpg)'
     };
@@ -117,11 +123,29 @@ remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
     if(!connected) {
         return $location.path("/");
     }
+
+    /**
+     * Watch photo
+     */
+    $scope.watchPhotos = function() {
+        $location.path('/photos');
+        return true;
+    }
+
     /**
      * Take photo
      */
     $scope.takePhoto = function() {
         $location.path('/camera');
+        return true;
+    }
+
+    /**
+     * ipAddress
+     */
+    $scope.getIPAddress = function() {
+        $location.path('/address');
+        return true;
     }
 
     /**
@@ -133,5 +157,99 @@ remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
             $location.path("/");
         });
     }
+});
 
+remoteCamera.controller('watchPhotosCtrl', function($scope, $resource, $location) {
+
+    if(!connected) {
+        return $location.path("/");
+    }
+
+    $scope.loadingStyle = {
+        backgroundImage:'url(/images/loading.jpg)'
+    }
+
+    /**
+     * Back menu
+     */
+    $scope.openMenu = function() {
+        $location.path("/menu");
+    }
+
+    /**
+     * Get photos
+     */
+    $resource('/api/photos').get(function(data) {
+        if(data.stat === 'ok') {
+            $scope.loadingStyle = {};
+            $scope.photos = data.photos;
+            $scope.photosLength = data.photos.length;
+            if(data.photos.length === 0) {
+                $scope.getPhotoResult = 'Wow, please take a photo!'
+            }
+        } else if(data.stat === 'fail') {
+            $scope.getPhotoResult = data.msg;
+        } else if(data.stat === 'deny') {
+            $location.path("/");
+        }
+    }, function() {
+        $scope.loadingStyle = {
+            backgroundImage:'url(/images/error.jpg)'
+        }
+    });
+
+    /**
+     * Delete photo
+     */
+    $scope.deletePhoto = function(photo) {
+        $resource('/api/photos/' + photo.name).delete({}, function(data) {
+            if(data.stat === 'ok') {
+                delete $scope.getPhotoResult;
+                // 巧妙的删除方法
+                var indexof = $scope.photos.indexOf(photo);
+                $scope.photos.splice(indexof, 1);
+                if($scope.photos.length === 0) {
+                    $scope.getPhotoResult = 'Wow, please take a photo!'
+                }
+            } else if(data.stat === 'fail') {
+                $scope.getPhotoResult = data.msg;
+            } else if(data.stat === 'deny') {
+                $location.path("/");
+            }
+        });
+    }
+
+});
+
+remoteCamera.controller('ipAddressCtrl', function($scope, $resource, $location) {
+
+    if(!connected) {
+        return $location.path("/");
+    }
+
+    $scope.openMenu = function() {
+        $location.path("/menu");
+    }
+
+    $scope.getHostIP = function() {
+        $resource('/api/hostIP').get(function(data) {
+            if(data.stat === 'ok') {
+                $scope.hostIP = data.host;
+            } else if(data.stat === 'fail') {
+            } else if(data.stat === 'deny') {
+                $location.path("/");
+            }
+        });
+    }
+
+    $scope.getRounterIP = function() {
+        $resource('/api/rounterIP').get(function(data) {
+            if(data.stat === 'ok') {
+                $scope.routerIP = data.host;
+            } else if(data.stat === 'fail') {
+            } else if(data.stat === 'deny') {
+                $location.path("/");
+            }
+        });
+    }
 });

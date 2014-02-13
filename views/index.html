@@ -24,7 +24,7 @@
                 <input type="password" class="login-input" placeholder="Password" ng-model="password" required/>
             </div>
             <div class="login-form-item">
-                <input type="submit" value="login" class="login-button" ng-disabled="loginForm.$invalid"/>
+                <input type="submit" value="Login" class="login-button" ng-disabled="loginForm.$invalid"/>
             </div>
         </form>
         <div class="foot">
@@ -37,7 +37,8 @@
     <div class="container" ng-controller="cameraCtrl">
         <div class="camera-photo" ng-style="photoStyle" >
             <div class="camera-photo-menu">
-                <a class="list-btn" ng-click="openMenu()"><span class="fui-list"></span></a>
+                <a class="list-btn" ng-click="openMenu()"><span class="fui-arrow-left"></span></a>
+                <span class="camera-title">Remote Camera</span>
             </div>
             <div class="camera-photo-info">
                 <p>[[photoInfo]]</p>
@@ -47,7 +48,10 @@
             </p>
         </div>
         <div class="camera-action">
-            <a class="camera-btn" ng-click="cameraAction()" ng-class="{disabled: camera-btn-disabled}"><span class="fui-photo"></span></a>
+            <a class="camera-btn" ng-click="cameraAction()" ng-class="{disabled: camera-btn-disabled}"><span class="fui-play"></span></a>
+        </div>
+        <div class="camera-info">
+            <p>Take a Photo Anywhere! -- Remote Camera</p>
         </div>
         <div class="foot">
             <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
@@ -62,23 +66,21 @@
         </div>
         <ul class="menu">
             <li class="menu-list">
-                <a class="menu-list-link">
-                    <span class="icon fui-eye"></span>
-                    <span class="text">Watch all</span>
+                <a class="menu-list-link" ng-click="watchPhotos()">
+                    <span class="icon fui-list"></span>
+                    <span class="text">All photos</span>
                 </a>
             </li>
             <li class="menu-list">
                 <a class="menu-list-link" ng-click="takePhoto()">
-                    <span class="icon fui-photo"></span>
-                    <span class="text">
-                        Take a photo
-                    </span>
+                    <span class="icon fui-play"></span>
+                    <span class="text">Take a photo</span>
                 </a>
             </li>
             <li class="menu-list">
-                <a class="menu-list-link">
-                    <span class="icon fui-mail"></span>
-                    <span class="text">Mail setting</span>
+                <a class="menu-list-link" ng-click="getIPAddress()">
+                    <span class="icon fui-location"></span>
+                    <span class="text">IP Address</span>
                 </a>
             </li>
             <li class="menu-list">
@@ -100,6 +102,74 @@
                 </a>
             </li>
         </ul>
+        <div class="foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="photosView">
+    <div class="container" ng-controller="watchPhotosCtrl">
+        <div class="photos">
+            <div class="photos-action">
+                <a class="list-btn" ng-click="openMenu()"><span class="fui-arrow-left"></span></a>
+                <span class="photos-title">Photos([[photosLength]])</span>
+            </div>
+            <ul class="photos-list" ng-style="loadingStyle">
+                <li class="photos-list-result">
+                    <p>[[getPhotoResult]]</p>
+                </li>
+                <li class="photos-list-item" ng-repeat="photo in photos">
+                    <div class="img">
+                        <img ng-src="[[photo.url]]" />
+                    </div>
+                    <div class="text">
+                        <p>[[photo.name]]</p>
+                        <span>[[photo.size]] KB</span>
+                    </div>
+                    <div class="action">
+                        <a ng-click="photo.deletePopup=true" class="action-btn"><span class="fui-cross"></span></a>
+                        <div class="action-pop" ng-class="{active: photo.deletePopup}">
+                            <p class="warninfo">Do you really want to delete?</p>
+                            <p class="btninfo"><a class="action-yes" ng-click="deletePhoto(photo)">Yes</a> or <a class="action-no" ng-click="photo.deletePopup=false">No</a></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="foot">
+            <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="ipAddressView">
+    <div class="container" ng-controller="ipAddressCtrl">
+        <div class="address">
+            <div class="address-menu">
+                <a class="list-btn" ng-click="openMenu()"><span class="fui-arrow-left"></span></a>
+                <span class="address-menu-title">IP Address</span>
+            </div>
+            <div class="address-show">
+                <div class="address-show-info">
+                    <div class="icon">
+                        <span class="fui-location"></span>
+                    </div>
+                    <div class="text">
+                        <p>Router: <span>[[routerIP]]</span></p>
+                        <p>Host: <span>[[hostIP]]</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="address-action">
+            <a class="address-action-host" ng-click="getHostIP()">Host IP</a>
+            <a class="address-action-rounter" ng-click="getRounterIP()">Rounter IP</a>
+        </div>
+        <div class="camera-info">
+            <p>Help to your server IP -- Remote Camera</p>
+        </div>
         <div class="foot">
             <p>&copy; 2014 by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a></p>
         </div>
