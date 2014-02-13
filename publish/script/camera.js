@@ -307,7 +307,7 @@ remoteCamera.controller('systemCtrl', function($scope, $resource, $location) {
             $scope.hostname = data.info.hostname;
             $scope.platform = data.info.platform;
             $scope.totalmem = data.info.totalmem + ' KB';
-            $scope.usedmem = data.info.usedmem + ' KB (' + parseInt(data.info.usedmem/data.info.totalmem, 10)*100 + '%)';
+            $scope.usedmem = data.info.usedmem + ' KB (' + parseInt(data.info.usedmem/data.info.totalmem*100, 10) + '%)';
         } else if(data.stat === 'deny') {
             $location.path('/');
         }
