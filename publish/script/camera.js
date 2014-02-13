@@ -37,7 +37,7 @@ var remoteCamera = angular.module('RemoteCamera',['ngResource'], function ($inte
 // loginCtrl
 remoteCamera.controller('loginCtrl', function($scope, $resource, $location) {
     if(connected) {
-        return $location.path("/camera");
+        return $location.path("/menu");
     }
 
     $scope.doLogin = function() {
