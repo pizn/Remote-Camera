@@ -56,7 +56,7 @@ exports.cameraCtrl = function(app) {
         });
         //console.log('---> Done     ---------|');
         //console.log('');
-        console.log('[info] User %s do camear', req.session.user);
+        console.log('[info] Take a photo name %s', title);
     });
 
     app.get('/api/version', function(req, res) {
