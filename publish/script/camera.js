@@ -234,7 +234,7 @@ remoteCamera.controller('watchPhotosCtrl', function($scope, $resource, $location
                 if($scope.photos.length === 0) {
                     $scope.getPhotoResult = 'Wow, please take a photo!'
                 }
-                $scope.photosLength = data.photos.length;
+                $scope.photosLength = $scope.photos.length;
             } else if(data.stat === 'fail') {
                 $scope.getPhotoResult = data.msg;
             } else if(data.stat === 'deny') {
