@@ -156,6 +156,14 @@ remoteCamera.controller('menuCtrl', function($scope, $resource, $location) {
     }
 
     /**
+     * system
+     */
+    $scope.showSystem = function() {
+        $location.path('/system');
+        return true;
+    }
+
+    /**
      * About
      */
     $scope.showAbout = function() {
@@ -290,9 +298,9 @@ remoteCamera.controller('aboutCtrl', function($scope, $resource, $location) {
 });
 
 remoteCamera.controller('systemCtrl', function($scope, $resource, $location) {
-//    if(!connected) {
-//        return $location.path("/");
-//    }
+    if(!connected) {
+        return $location.path("/");
+    }
     $resource('/api/system').get(function(data) {
         if(data.stat === 'ok') {
             $scope.hostname = data.info.hostname;
@@ -303,4 +311,8 @@ remoteCamera.controller('systemCtrl', function($scope, $resource, $location) {
             $location.path('/');
         }
     });
+
+    $scope.openMenu = function() {
+        $location.path('/menu');
+    }
 });

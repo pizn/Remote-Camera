@@ -16,7 +16,7 @@ exports.cameraCtrl = function(app) {
         }
 
         //console.log('---> 准备拍照 ----------');
-        var title = moment().format('YYYYMMDD-hhmmss-a');
+        var title = moment().format('MMDD-hhmm-a');
         //set picture
         var param = [];
         param.push("-d");
