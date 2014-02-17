@@ -1,7 +1,7 @@
 # Remote Camera - 远程照相机
 -------
 
-[!Remote Camera](http://www.zhanxin.info/static/picture/2014012703.jpg)
+![Remote Camera](http://www.zhanxin.info/static/picture/2014012703.jpg)
 
 [![building status](https://secure.travis-ci.org/pizn/Remote-Camera.png?branch=master)](https://travis-ci.org/pizn/Remote-Camera)
 
@@ -14,7 +14,7 @@ Remote Camera 是一个使用 NodeJs 控制接入在「树莓派」上的摄像�
 - 相片集的展示和删除功能
 - 动态获取路由器 IP 地址功能
 
-### 安装所需的依赖
+安装所需的依赖
 -------
 
 Remote Camera 目前只在 RaspberryPi 上正常运行，并且依赖于 linux 下的抓图工具包 fswebcam，所以在运行之前需要安装 fswebcam。
@@ -26,23 +26,22 @@ Remote Camera 目前只在 RaspberryPi 上正常运行，并且依赖于 linux �
 
 另外，还需要将树莓派接入到路由器中，设置路由器的「虚拟服务器」80端口指向「树莓派」的应用端口（例如3000）。
 
-### 如何使用
+如何使用
 -------
 
-
-懂的 NodeJs 的同学应该很简单，是吧。
+懂得 NodeJs 的同学应该很简单，是吧。
 
 - make install
 - make server
 
 更多细节，请详见《<a href="http://www.zhanxin.info/raspberrypi/2014-01-26-raspberrypi-use-nodejs-to-remote-camera.html">远程控制树莓派摄像头拍照</a>》
 
-### 关于作者
+关于作者
 -------
 
 大家好，我是[【掌心】](http://www.zhanxin.info)，欢迎交流。
 
-### License
+License
 -------
 
 This program is free software: you can redistribute it and/or modify
