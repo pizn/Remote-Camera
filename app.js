@@ -39,5 +39,9 @@ address.ipHelperCtrl(app);
 var os = require(__dirname + '/controllers/system.js');
 os.systemCtrl(app);
 
+exports.server = function() {
+    return app;
+}
+
 app.listen(config.port);
 console.log("[info] Server started and listening on port " + config.port);
