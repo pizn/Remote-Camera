@@ -1,5 +1,6 @@
 install:
 	@sudo apt-get install fswebcam
+	@npm install .
 
 specs := $(shell find ./tests -name '*.test.js' ! -path "*node_modules/*")
 reporter = spec
