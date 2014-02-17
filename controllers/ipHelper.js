@@ -39,7 +39,7 @@ var sentMailModule = function(data) {
         if(error){
             console.log('[error] Sent email error');
         }else{
-            console.log('[info]' + moment().format('MMDD-hhmm-a') + " mail send " + response.message);
+            console.log('[info] ' + moment().format('MMDD-hhmm-a') + " mail send " + response.message);
         }
         //如果还需要实用其他的 smtp 协议，可将当前回话关闭
         smtpTransport.close();
