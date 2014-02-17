@@ -1,7 +1,7 @@
 Remote Camera - 远程照相机
 -------
 
-![Remote Camera](http://www.zhanxin.info/static/picture/2014012703.jpg)
+![Remote Camera](https://github-camo.global.ssl.fastly.net/db63595399981f41e06d4711dcc1b18e3313328f/687474703a2f2f7777772e7a68616e78696e2e696e666f2f7374617469632f706963747572652f323031343031323730332e6a7067)
 
 [![building status](https://secure.travis-ci.org/pizn/Remote-Camera.png?branch=master)](https://travis-ci.org/pizn/Remote-Camera)
 
