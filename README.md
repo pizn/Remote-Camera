@@ -2,9 +2,7 @@
 
 [![building status](https://secure.travis-ci.org/pizn/Remote-Camera.png?branch=master)](https://travis-ci.org/pizn/Remote-Camera)
 
-通过手机访问「树莓派」上的摄像头，抓拍相片并返回给手机界面的一款 HTML5 轻量级应用。
-
-关键字：树莓派，NodeJS，HTML5，AngularJS，iPhone单页应用。
+Remote Camera 是一个通过控制接入在「树莓派」上的摄像头进行拍照，获取相片并返回给手机界面的一款 HTML5 轻量级 WebApp 应用。
 
 ## 如何使用？
 
