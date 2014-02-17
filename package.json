@@ -1,10 +1,26 @@
 {
   "name": "Remote-Camera",
   "description": "Remote Camera",
+  "author": "Zhanxin Lin <zhanxin.info@gmail.com>",
+  "homepage": "https://github.com/pizn/Remote-Camera",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "keywords": [
+    "webcamera",
+    "RaspberryPi",
+    "webapp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pizn/Remote-Camera.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pizn/Remote-Camera/issues"
+  },
   "scripts": {
-  	"start": "node app.js"
+    "install": "make install",
+  	"start": "make server",
+    "test": "make test"
   },
   "dependencies": {
     "express": "3.x",
@@ -16,5 +32,8 @@
     "iconv-lite": "0.2.11",
     "async": "0.2.10",
     "bufferhelper": "0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
   }
 }
